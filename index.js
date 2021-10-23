@@ -81,8 +81,9 @@ const promptMembers = () => {
             getEngineer();
         }else if ("Intern") {
             getIntern();
-        }else {
+        }else if ("None") {
             console.log("Team's Profile webpage has been generated successfully.");
+            break;
         }
     })
 };
@@ -112,6 +113,7 @@ const getEngineer = () => {
         const engineer = new Engineer(eng_name, id, eng_mail, eng_git);
         engineeringTeam.push(engineer);
         console.log(engineeringTeam);
+        return promptMembers(engineeringTeam);
     })
 };
 
