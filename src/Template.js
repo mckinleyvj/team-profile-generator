@@ -41,49 +41,61 @@ class createHTML{
                     {
                         if (member.role === "Manager") {
                             const memberCards = 
-                            `<div class="col-4 mt-4">
+                            `<div class="container">
+                            <div class="row">
+                              <div class="col">
                                 <div class="card h-100 mx-4 px-4">
-                                    <h3>${member.name}</h3>
-                                    <h4>☕ ${member.role}</h4>
+                                    <div class="card-header">
+                                        <h3>${member.name}</h3>
+                                        <h4>☕ ${member.role}</h4>
+                                    </div>
                                     <div class="card-body">
                                     <p class="id">ID: ${member.id}</p>
                                     <p class="email">Email: <a href="mailto:${member.email}">${member.email}</a></p>
                                     <p class="office">Office Number: ${member.officePhone}</p>
                                     </div>
-                                </div>
-                        </div>`;
+                                    </div>
+                                  </div>`;
                         arr_htmlElements.push(memberCards);
                         }
 
                         if (member.role === "Engineer") {
                             const memberCards = 
-                            `<div class="col-4 mt-4">
-                                <div class="card h-100 mx-4 px-4">
+                            `<div class="container">
+                            <div class="row">
+                              <div class="col">
+                              <div class="card h-100 mx-4 px-4">
+                              <div class="card-header">
                                     <h3>${member.name}</h3>
                                     <h4>☕ ${member.role}</h4>
+                                    </div>
                                     <div class="card-body">
                                     <p class="id">ID: ${member.id}</p>
                                     <p class="email">Email: <a href="mailto:${member.email}">${member.email}</a></p>
                                     <p class="office">Github : ${member.github}</p>
                                     </div>
-                                </div>
-                        </div>`;
+                                    </div>
+                                  </div>`;
                         arr_htmlElements.push(memberCards);
                         }
 
                         if (member.role === "Intern") {
                             const memberCards = 
-                            `<div class="col-4 mt-4">
-                                <div class="card h-100 mx-4 px-4">
+                            `<div class="container">
+                            <div class="row">
+                              <div class="col">
+                              <div class="card h-100 mx-4 px-4">
+                              <div class="card-header">
                                     <h3>${member.name}</h3>
                                     <h4>☕ ${member.role}</h4>
+                                    </div>
                                     <div class="card-body">
                                     <p class="id">ID: ${member.id}</p>
                                     <p class="email">Email: <a href="mailto:${member.email}">${member.email}</a></p>
                                     <p class="office">School : ${member.school}</p>
                                     </div>
-                                </div>
-                        </div>`;
+                                    </div>
+                                  </div>`;
                         arr_htmlElements.push(memberCards);
                         }
                     });
