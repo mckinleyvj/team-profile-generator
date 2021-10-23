@@ -4,16 +4,18 @@ const fs = require('fs');
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require("./lib/Engineer");
-// const Intern = require("./lib/Intern");
+const Intern = require("./lib/Intern");
 
-const team = []
 const engineeringTeam = [];
 
-const welcome = () => {
+welcome = () => {
     console.log(`-----------------------------------------`);
     console.log(`           Team Profile Builder`);
     console.log(`=========================================`);
-        
+    getTeamName();
+}
+
+getTeamName = () => {
     return inquirer.prompt([
         {
             type: "input",
@@ -22,12 +24,13 @@ const welcome = () => {
         }
     ])
     .then(function(response){
-        team.push(response.teamName);
-        console.log(`- Successfully added Team Name.`);
+        engineeringTeam.push(response.teamName);
+        console.log(`-- Received.`);
+        getManager();
     })
-};
+}
 
-const getManager = () => {
+getManager = () => {
 
     console.log(`-----------------------------------------`);
     console.log(`            Adding a Manager`);
@@ -51,21 +54,25 @@ const getManager = () => {
         }
     ])
     .then(user_input => {
-        const { mngr_name, mngr_mail, mngr_phone } = user_input;
-        //adding 1 as manager will always be emp_id = 1
-        const id = engineeringTeam.length + 1;
-        const manager = new Manager(mngr_name, id, mngr_mail, mngr_phone);
-        engineeringTeam.push(manager);
-        // console.log(manager);
+        const mngr_name = user_input.mngr_name;
+        const id = engineeringTeam.length;
+        const mngr_mail = user_input.mngr_mail;
+        const mngr_phone = user_input.mngr_phone;
+        
+        const man = new Manager(mngr_name, id, mngr_mail, mngr_phone);
+        // const role = man.getRole();
+        
+        engineeringTeam.push(man);
         // console.log(engineeringTeam);
-        console.log(`- Successfully added Manager.`);
+        console.log(`-- Received.`);
         console.log(`-----------------------------------------`);
         console.log(`          Adding a Team Member`);
         console.log(`=========================================`);
+        promptMembers();
     })
-};
+}
 
-const promptMembers = () => {
+promptMembers = () => {
 
     return inquirer.prompt ([
         {
@@ -74,21 +81,21 @@ const promptMembers = () => {
             choices: ['Engineer', 'Intern', 'None'],
             name: 'member_type',
         },
-
     ])
     .then(res => {
-        if ("Engineer") {
+        if (res.member_type === "Engineer") {
             getEngineer();
-        }else if ("Intern") {
+        }
+        if (res.member_type === "Intern") {
             getIntern();
-        }else if ("None") {
-            console.log("Team's Profile webpage has been generated successfully.");
-            break;
+        }
+        if (res.member_type === "None") {
+            generateAPI();
         }
     })
-};
+}
 
-const getEngineer = () => {
+getEngineer = () => {
 
     return inquirer.prompt ([
         {
@@ -108,18 +115,70 @@ const getEngineer = () => {
         }
     ])
     .then(res => {
-        const { eng_name, eng_mail, eng_git } = res;
-        const id = engineeringTeam.length + 1;
-        const engineer = new Engineer(eng_name, id, eng_mail, eng_git);
-        engineeringTeam.push(engineer);
+        const eng_name = res.eng_name;
+        const id = engineeringTeam.length;
+        const eng_mail = res.eng_mail;
+        const eng_git = res.eng_git;
+        
+        const eng = new Engineer(eng_name, id, eng_mail, eng_git);
+
+        engineeringTeam.push(eng);
         console.log(engineeringTeam);
         return promptMembers(engineeringTeam);
     })
-};
+}
 
-welcome()
-    .then(getManager)
-    .then(promptMembers)
-    .catch(err => {
-        console.log(err);
-    });
+getIntern = () => {
+
+    return inquirer.prompt ([
+        {
+            type: "input",
+            message: "Enter intern's name :", 
+            name: "int_name",
+        },
+        {
+            type: "input",
+            message: "Enter intern's email :",
+            name: "int_mail",
+        },
+        {
+            type: "input",
+            message: "Enter intern's school name : ",
+            name: "int_school",
+        }
+    ])
+    .then(resp => {
+        const int_name = resp.int_name;
+        const id = engineeringTeam.length;
+        const int_mail = resp.int_mail;
+        const int_school = resp.int_school;
+        
+        const intr = new Intern(int_name, id, int_mail, int_school);
+
+        engineeringTeam.push(intr);
+        console.log(engineeringTeam);
+        return promptMembers(engineeringTeam);
+    })
+}
+
+generateAPI = () => {
+    const writeFile = data => {
+        fs.writeFile('./dist/teamsAPI.html', data, err => {
+            // if there is an error 
+            if (err) {
+                console.log(err);
+                return;
+            // when the profile has been created 
+            } else {
+                console.log("Team's Profile webpage has been generated successfully.");
+            }
+        })
+    }; 
+}
+
+welcome();
+//     .then(getTeamName)
+// //     .then(promptMembers)
+//     .catch(err => {
+//         console.log(err);
+//     });
