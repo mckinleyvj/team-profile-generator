@@ -1,36 +1,34 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 
 const engineeringTeam = [];
 
-welcome = () => {
+const welcome = () => {
     console.log(`-----------------------------------------`);
     console.log(`           Team Profile Builder`);
     console.log(`=========================================`);
-    getTeamName();
-}
+    return;
+};
 
-getTeamName = () => {
+const getTeamName = () => {
     return inquirer.prompt([
         {
             type: "input",
             message: "Team name :",
             name: "teamName",
-        }
+        },
     ])
-    .then(function(response){
+    .then(response => {
         engineeringTeam.push(response.teamName);
         console.log(`-- Received.`);
-        getManager();
     })
-}
+};
 
-getManager = () => {
+const getManager = () => {
 
     console.log(`-----------------------------------------`);
     console.log(`            Adding a Manager`);
@@ -51,7 +49,7 @@ getManager = () => {
             type: "input",
             message: "Enter the manager's office number :",
             name: "mngr_phone",
-        }
+        },
     ])
     .then(user_input => {
         const mngr_name = user_input.mngr_name;
@@ -59,20 +57,19 @@ getManager = () => {
         const mngr_mail = user_input.mngr_mail;
         const mngr_phone = user_input.mngr_phone;
         
-        const man = new Manager(mngr_name, id, mngr_mail, mngr_phone);
+        const manager = new Manager(mngr_name, id, mngr_mail, mngr_phone);
         // const role = man.getRole();
         
-        engineeringTeam.push(man);
+        engineeringTeam.push(manager);
         // console.log(engineeringTeam);
         console.log(`-- Received.`);
         console.log(`-----------------------------------------`);
         console.log(`          Adding a Team Member`);
         console.log(`=========================================`);
-        promptMembers();
     })
-}
+};
 
-promptMembers = () => {
+const promptMembers = () => {
 
     return inquirer.prompt ([
         {
@@ -93,9 +90,9 @@ promptMembers = () => {
             generateAPI();
         }
     })
-}
+};
 
-getEngineer = () => {
+const getEngineer = () => {
 
     return inquirer.prompt ([
         {
@@ -112,7 +109,7 @@ getEngineer = () => {
             type: "input",
             message: "Enter engineer's Github username :",
             name: "eng_git",
-        }
+        },
     ])
     .then(res => {
         const eng_name = res.eng_name;
@@ -120,15 +117,15 @@ getEngineer = () => {
         const eng_mail = res.eng_mail;
         const eng_git = res.eng_git;
         
-        const eng = new Engineer(eng_name, id, eng_mail, eng_git);
+        const employee = new Engineer(eng_name, id, eng_mail, eng_git);
 
-        engineeringTeam.push(eng);
+        engineeringTeam.push(employee);
         console.log(engineeringTeam);
         return promptMembers(engineeringTeam);
     })
-}
+};
 
-getIntern = () => {
+const getIntern = () => {
 
     return inquirer.prompt ([
         {
@@ -153,32 +150,36 @@ getIntern = () => {
         const int_mail = resp.int_mail;
         const int_school = resp.int_school;
         
-        const intr = new Intern(int_name, id, int_mail, int_school);
+        const employee = new Intern(int_name, id, int_mail, int_school);
 
-        engineeringTeam.push(intr);
+        engineeringTeam.push(employee);
         console.log(engineeringTeam);
         return promptMembers(engineeringTeam);
     })
-}
+};
 
-generateAPI = () => {
-    const writeFile = data => {
-        fs.writeFile('./dist/teamsAPI.html', data, err => {
-            // if there is an error 
-            if (err) {
-                console.log(err);
-                return;
-            // when the profile has been created 
-            } else {
-                console.log("Team's Profile webpage has been generated successfully.");
-            }
-        })
-    }; 
-}
+// const generateHTML = (engineeringTeam) =>
+//   `<!DOCTYPE html>
+// <html lang="en">
+// <head>
+//   <meta charset="UTF-8">
+//   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+//   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+//   <title>Document</title>
+// </head>
+// <body>
+//   <div class="jumbotron jumbotron-fluid">
+//   <div class="container">
+//     <p class="lead">I am from ${engineeringTeam}.</p>
+//   </div>
+// </div>
+// </body>
+// </html>`;
 
 welcome();
-//     .then(getTeamName)
-// //     .then(promptMembers)
-//     .catch(err => {
-//         console.log(err);
-//     });
+getTeamName()
+    .then(getManager)
+    .then(promptMembers)
+    .catch(err => {
+        console.log(err);
+    });  
