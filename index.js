@@ -29,7 +29,6 @@ const getTeamName = () => {
 };
 
 const getManager = () => {
-
     console.log(`-----------------------------------------`);
     console.log(`            Adding a Manager`);
     console.log(`=========================================`);
@@ -70,30 +69,28 @@ const getManager = () => {
 };
 
 const promptMembers = () => {
-
     return inquirer.prompt ([
         {
             type: 'list',
             message: 'Select a member type to add into the team :',
             choices: ['Engineer', 'Intern', 'None'],
-            name: 'member_type',
+            name: 'answer_type',
         },
     ])
     .then(res => {
-        if (res.member_type === "Engineer") {
+        if (res.answer_type === "Engineer") {
             getEngineer();
         }
-        if (res.member_type === "Intern") {
+        if (res.answer_type === "Intern") {
             getIntern();
         }
-        if (res.member_type === "None") {
-            generateAPI();
+        if (res.answer_type === "None") {
+            createPage();
         }
     })
 };
 
 const getEngineer = () => {
-
     return inquirer.prompt ([
         {
             type: "input",
@@ -120,13 +117,12 @@ const getEngineer = () => {
         const employee = new Engineer(eng_name, id, eng_mail, eng_git);
 
         engineeringTeam.push(employee);
-        console.log(engineeringTeam);
+        // console.log(engineeringTeam);
         return promptMembers(engineeringTeam);
     })
 };
 
 const getIntern = () => {
-
     return inquirer.prompt ([
         {
             type: "input",
@@ -153,33 +149,43 @@ const getIntern = () => {
         const employee = new Intern(int_name, id, int_mail, int_school);
 
         engineeringTeam.push(employee);
-        console.log(engineeringTeam);
+        // console.log(engineeringTeam);
         return promptMembers(engineeringTeam);
     })
 };
 
-// const generateHTML = (engineeringTeam) =>
-//   `<!DOCTYPE html>
-// <html lang="en">
-// <head>
-//   <meta charset="UTF-8">
-//   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-//   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-//   <title>Document</title>
-// </head>
-// <body>
-//   <div class="jumbotron jumbotron-fluid">
-//   <div class="container">
-//     <p class="lead">I am from ${engineeringTeam}.</p>
-//   </div>
-// </div>
-// </body>
-// </html>`;
+const createPage = () => {
+    const generateHTML = () =>
+    `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">${engineeringTeam[0]}</h1>
+      <p class="lead"></p>
+    </div>
+  </div>
+  </body>
+  </html>`;
+
+  console.log(engineeringTeam);
+  const htmlPageContent = generateHTML(engineeringTeam);
+
+    fs.writeFile('./dist/index.html', htmlPageContent, (err) =>
+      err ? console.log(err) : console.log('Successfully created index.html!')
+    );
+};
 
 welcome();
-getTeamName()
-    .then(getManager)
-    .then(promptMembers)
-    .catch(err => {
-        console.log(err);
-    });  
+(() => {
+    getTeamName()
+        .then(getManager)
+        .then(promptMembers)
+        .catch((err) => console.error(err));
+})();
