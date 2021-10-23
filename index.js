@@ -1,9 +1,11 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
+// const fs = require('fs');
 
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+
+const createHTML = require('./src/Template')
 
 const engineeringTeam = [];
 
@@ -85,7 +87,9 @@ const promptMembers = () => {
             getIntern();
         }
         if (res.answer_type === "None") {
-            createPage();
+            // createPage();
+            const createhtml = new createHTML(engineeringTeam);
+            createhtml.createPage();
         }
     })
 };
@@ -152,34 +156,6 @@ const getIntern = () => {
         // console.log(engineeringTeam);
         return promptMembers(engineeringTeam);
     })
-};
-
-const createPage = () => {
-    const generateHTML = () =>
-    `<!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">${engineeringTeam[0]}</h1>
-      <p class="lead"></p>
-    </div>
-  </div>
-  </body>
-  </html>`;
-
-  console.log(engineeringTeam);
-  const htmlPageContent = generateHTML(engineeringTeam);
-
-    fs.writeFile('./dist/index.html', htmlPageContent, (err) =>
-      err ? console.log(err) : console.log('Successfully created index.html!')
-    );
 };
 
 welcome();

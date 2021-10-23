@@ -1,4 +1,12 @@
+const fs = require('fs');
 
+class createHTML{
+    constructor(response) {
+        this.response = response;
+    }
+
+    createPage() {
+        const generateHTML = () => `
         <!DOCTYPE html>
         <html lang="en">
             <head>
@@ -9,7 +17,7 @@
             </head>
             <body>
                 <header class="container-fluid jumbotron-custom bg-dark text-white">
-                    <h1 class="display-4 text-center">teams are us</h1>
+                    <h1 class="display-4 text-center">${this.response[0]}</h1>
                 </header>
 
                 <section></section>
@@ -17,4 +25,15 @@
             </div>
             </body>
         </html>
-        
+        `;
+
+        console.log(this.response);
+        const htmlPageContent = generateHTML(this.response);
+
+        fs.writeFile('./dist/index.html', htmlPageContent, (err) =>
+            err ? console.log(err) : console.log('Successfully created index.html!')
+        );
+    }
+}
+
+module.exports = createHTML;
