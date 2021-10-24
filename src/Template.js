@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { forEach } = require('lodash');
+// const { forEach } = require('lodash');
 
 class createHTML{
     constructor(response) {
