@@ -1,33 +1,43 @@
 const Employee = require('../lib/Employee');
 
-describe("getName", () => {
-    it("should return this.name as received from input", () => {
+describe("creating the Employee Object", () => {
+    it("should return without error as per user input", () => {
         const employee = new Employee("Mckinley", 1, 'mckinley@gg.com');
 
-        expect(employee.name).toEqual("Mckinley");
+        expect(employee.name).toEqual(expect.any(String));
+        expect(employee.id).toEqual(expect.any(Number));
+        expect(employee.email).toEqual(expect.any(String));
+    });
+  });
+
+describe("getName", () => {
+    it("should return name without error as per user input", () => {
+        const employee = new Employee("Mckinley", 1, 'mckinley@gg.com');
+
+        expect(employee.getName()).toEqual(expect.any(String));
     });
   });
 
   describe("getId", () => {
-    it("should return this.id as received from input", () => {
+    it("should return id without error as per user input", () => {
         const employee = new Employee("Mckinley", 1, 'mckinley@gg.com');
 
-        expect(employee.id).toEqual(1);
+        expect(employee.getId()).toEqual(expect.any(Number));
     });
   });
 
   describe("getEmail", () => {
-    it("should return this.email as received from input", () => {
+    it("should return email without error as per user input", () => {
         const employee = new Employee("Mckinley", 1, 'mckinley@gg.com');
 
-        expect(employee.email).toEqual("mckinley@gg.com");
+        expect(employee.getEmail()).toEqual(expect.any(String));
     });
   });
 
   describe("getRole", () => {
-    it("should return this.role as received from input", () => {
+    it("should return employee as role without error as per class", () => {
         const employee = new Employee("Mckinley", 1, 'mckinley@gg.com');
 
-        expect(employee.role).toEqual("Employee");
+        expect(employee.getRole()).toEqual("Employee");
     });
   });
