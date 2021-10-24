@@ -29,7 +29,7 @@ class createHTML{
                 </header>
 
                 <div class="container-fluid d-flex justify-content-around">
-                <div class="row w-75">`;
+                <div class="row w-100 justify-content-center">`;
 
                 arr_htmlElements.push(topEl);
 
@@ -43,16 +43,18 @@ class createHTML{
                     {
                         if (member.role === "Manager") {
                             const memberCards = 
-                            `<div class="col">
-                            <div class="card h-100">
+                            `<div class="col-12 col-sm-12 col-md-12 col-lg-3 p-4">
+                            <div class="card h-100 shadow p-3 mb-5 bg-white rounded">
                               <div class="card-header bg-primary text-white">
                                         <h3>${member.name}</h3>
                                         <h4>☕ ${member.role}</h4>
                                     </div>
                                     <div class="card-body">
-                                    <p class="id">ID: ${member.id}</p>
-                                    <p class="email">Email: <a href="mailto:${member.email}">${member.email}</a></p>
-                                    <p class="office">Office Number: ${member.officePhone}</p>
+                                    <ul class="list-group">
+                                    <li class="border list-group-item border-light">ID: ${member.id}</li>
+                                    <li class="border list-group-item border-light">Email: <a href="mailto:${member.email}">${member.email}</a></li>
+                                    <li class="border list-group-item border-light">Office Number: ${member.officePhone}</li>
+                                    </ul>
                                     </div>
                               </div>
                             </div>`;
@@ -61,16 +63,18 @@ class createHTML{
 
                         if (member.role === "Engineer") {
                             const memberCards = 
-                            `<div class="col">
-                            <div class="card h-100">
+                            `<div class="col-12 col-sm-12 col-md-12 col-lg-3 p-4">
+                            <div class="card h-100 shadow p-3 mb-5 bg-white rounded">
                               <div class="card-header bg-success text-white">
                                     <h3>${member.name}</h3>
                                     <h4>🛠 ${member.role}</h4>
                                     </div>
                                     <div class="card-body">
-                                    <p class="id">ID: ${member.id}</p>
-                                    <p class="email">Email: <a href="mailto:${member.email}">${member.email}</a></p>
-                                    <p class="office">Github : <a href="https://www.github.com/${member.github}">${member.github}</a></p>
+                                    <ul class="list-group">
+                                    <li class="border list-group-item border-light">ID: ${member.id}</li>
+                                    <li class="border list-group-item border-light">Email: <a href="mailto:${member.email}">${member.email}</a></li>
+                                    <li class="border list-group-item border-light">Github : <a href="https://www.github.com/${member.github}" target="_blank">${member.github}</a></li>
+                                    </ul>
                                     </div>
                               </div>
                             </div>`;
@@ -79,16 +83,18 @@ class createHTML{
 
                         if (member.role === "Intern") {
                             const memberCards = 
-                            `<div class="col">
-                            <div class="card h-100">
+                            `<div class="col-12 col-sm-12 col-md-12 col-lg-3 p-4">
+                            <div class="card h-100 shadow p-3 mb-5 bg-white rounded">
                               <div class="card-header bg-info text-white">
                                     <h3>${member.name}</h3>
                                     <h4>🎓 ${member.role}</h4>
                                     </div>
                                     <div class="card-body">
-                                    <p class="id">ID: ${member.id}</p>
-                                    <p class="email">Email: <a href="mailto:${member.email}">${member.email}</a></p>
-                                    <p class="office">School : ${member.school}</p>
+                                    <ul class="list-group">
+                                   <li class="border list-group-item border-light">ID: ${member.id}</li>
+                                    <li class="border list-group-item border-light">Email: <a href="mailto:${member.email}">${member.email}</a></li>
+                                    <li class="border list-group-item border-light">School : ${member.school}</li>
+                                    </ul>
                                     </div>
                               </div>
                             </div>`;
