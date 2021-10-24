@@ -1,5 +1,4 @@
 const inquirer = require('inquirer');
-// const fs = require('fs');
 
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -50,8 +49,7 @@ const getManager = () => {
                 if (correct) {
                       return true;
                   } else {
-                      console.error("-- Please enter a valid email address --");
-                      return false;
+                    return correct || "-- Please enter a valid email address --";
                   }
             },
         },
@@ -59,14 +57,9 @@ const getManager = () => {
             type: "input",
             message: "Enter the manager's office number :",
             name: "mngr_phone",
-            validate: val => {
-                correct = /[1-9]/gi.test(val)
-                if (correct) {
-                    return true;
-                } else {
-                    console.log("-- Please enter a valid phone number --")
-                    return false;
-                }
+            validate: value => {
+                const valid = !isNaN(parseInt(value));
+                return valid || "-- Please enter a valid number --";
             },
         },
     ])
@@ -77,10 +70,8 @@ const getManager = () => {
         const mngr_phone = user_input.mngr_phone;
         
         const manager = new Manager(mngr_name, id, mngr_mail, mngr_phone);
-        // const role = man.getRole();
         
         engineeringTeam.push(manager);
-        // console.log(engineeringTeam);
         console.log(`-- Received.`);
         console.log(`-----------------------------------------`);
         console.log(`          Adding a Team Member`);
@@ -105,7 +96,6 @@ const promptMembers = () => {
             getIntern();
         }
         if (res.answer_type === "None") {
-            // createPage();
             const createhtml = new createHTML(engineeringTeam);
             createhtml.createPage();
         }
@@ -128,8 +118,7 @@ const getEngineer = () => {
                 if (correct) {
                       return true;
                   } else {
-                      console.error("-- Please enter a valid email address --");
-                      return false;
+                    return correct || "-- Please enter a valid email address --";
                   }
             },
         },
@@ -148,7 +137,6 @@ const getEngineer = () => {
         const employee = new Engineer(eng_name, id, eng_mail, eng_git);
 
         engineeringTeam.push(employee);
-        // console.log(engineeringTeam);
         return promptMembers(engineeringTeam);
     })
 };
@@ -169,8 +157,7 @@ const getIntern = () => {
                 if (correct) {
                       return true;
                   } else {
-                      console.error("-- Please enter a valid email address --");
-                      return false;
+                    return correct || "-- Please enter a valid email address --";
                   }
             },
         },
@@ -189,7 +176,6 @@ const getIntern = () => {
         const employee = new Intern(int_name, id, int_mail, int_school);
 
         engineeringTeam.push(employee);
-        // console.log(engineeringTeam);
         return promptMembers(engineeringTeam);
     })
 };
