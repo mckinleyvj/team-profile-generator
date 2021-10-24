@@ -67,7 +67,7 @@ class createHTML{
                               <div class="card h-100 mx-4 px-4">
                               <div class="card-header">
                                     <h3>${member.name}</h3>
-                                    <h4>☕ ${member.role}</h4>
+                                    <h4>🛠 ${member.role}</h4>
                                     </div>
                                     <div class="card-body">
                                     <p class="id">ID: ${member.id}</p>
@@ -87,7 +87,7 @@ class createHTML{
                               <div class="card h-100 mx-4 px-4">
                               <div class="card-header">
                                     <h3>${member.name}</h3>
-                                    <h4>☕ ${member.role}</h4>
+                                    <h4>🎓 ${member.role}</h4>
                                     </div>
                                     <div class="card-body">
                                     <p class="id">ID: ${member.id}</p>
