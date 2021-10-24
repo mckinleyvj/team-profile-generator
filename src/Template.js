@@ -72,7 +72,7 @@ class createHTML{
                                     <div class="card-body">
                                     <p class="id">ID: ${member.id}</p>
                                     <p class="email">Email: <a href="mailto:${member.email}">${member.email}</a></p>
-                                    <p class="office">Github : ${member.github}</p>
+                                    <p class="office">Github : <a href="https://www.github.com/${member.github}">${member.github}</a></p>
                                     </div>
                                     </div>
                                   </div>`;
