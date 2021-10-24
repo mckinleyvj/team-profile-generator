@@ -18,16 +18,17 @@ class createHTML{
             <head>
                 <meta charset="UTF-8">
                 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+                <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">-->
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
                 <title>${res[0]}</title>
             </head>
             <body>
-                <header class="container-fluid jumbotron-custom bg-dark text-white">
+                <header class="jumbotron jumbotron-fluid bg-dark text-primary">
                     <h1 class="display-4 text-center">${res[0]}</h1>
                 </header>
 
-                <div class="container-fluid d-flex">`;
+                <div class="container-fluid d-flex justify-content-around">`;
 
                 arr_htmlElements.push(topEl);
 
@@ -41,11 +42,9 @@ class createHTML{
                     {
                         if (member.role === "Manager") {
                             const memberCards = 
-                            `<div class="container">
-                            <div class="row">
-                              <div class="col">
-                                <div class="card h-100 mx-4 px-4">
-                                    <div class="card-header">
+                            `<div class="row px-4">
+                            <div class="card h-100">
+                              <div class="card-header bg-dark text-primary">
                                         <h3>${member.name}</h3>
                                         <h4>☕ ${member.role}</h4>
                                     </div>
@@ -54,18 +53,16 @@ class createHTML{
                                     <p class="email">Email: <a href="mailto:${member.email}">${member.email}</a></p>
                                     <p class="office">Office Number: ${member.officePhone}</p>
                                     </div>
-                                    </div>
-                                  </div>`;
+                              </div>
+                            </div>`;
                         arr_htmlElements.push(memberCards);
                         }
 
                         if (member.role === "Engineer") {
                             const memberCards = 
-                            `<div class="container">
-                            <div class="row">
-                              <div class="col">
-                              <div class="card h-100 mx-4 px-4">
-                              <div class="card-header">
+                            `<div class="row px-4">
+                            <div class="card h-100">
+                              <div class="card-header bg-dark text-primary">
                                     <h3>${member.name}</h3>
                                     <h4>🛠 ${member.role}</h4>
                                     </div>
@@ -74,18 +71,16 @@ class createHTML{
                                     <p class="email">Email: <a href="mailto:${member.email}">${member.email}</a></p>
                                     <p class="office">Github : <a href="https://www.github.com/${member.github}">${member.github}</a></p>
                                     </div>
-                                    </div>
-                                  </div>`;
+                              </div>
+                            </div>`;
                         arr_htmlElements.push(memberCards);
                         }
 
                         if (member.role === "Intern") {
                             const memberCards = 
-                            `<div class="container">
-                            <div class="row">
-                              <div class="col">
-                              <div class="card h-100 mx-4 px-4">
-                              <div class="card-header">
+                            `<div class="row px-4">
+                            <div class="card h-100">
+                              <div class="card-header bg-dark text-primary">
                                     <h3>${member.name}</h3>
                                     <h4>🎓 ${member.role}</h4>
                                     </div>
@@ -94,13 +89,13 @@ class createHTML{
                                     <p class="email">Email: <a href="mailto:${member.email}">${member.email}</a></p>
                                     <p class="office">School : ${member.school}</p>
                                     </div>
-                                    </div>
-                                  </div>`;
+                              </div>
+                            </div>`;
                         arr_htmlElements.push(memberCards);
                         }
                     });
 
-                const btmEl = `</div></body></html>`;
+                const btmEl = `</div></div></body></html>`;
                 arr_htmlElements.push(btmEl);
 
         fs.writeFile('./dist/index.html', arr_htmlElements.join(""), (err) =>
