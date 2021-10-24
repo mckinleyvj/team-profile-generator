@@ -45,11 +45,29 @@ const getManager = () => {
             type: "input",
             message: "Enter the manager's email :",
             name: "mngr_mail",
+            validate: mailformat => {
+                correct = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mailformat)
+                if (correct) {
+                      return true;
+                  } else {
+                      console.error("-- Please enter a valid email address --");
+                      return false;
+                  }
+            },
         },
         {
             type: "input",
             message: "Enter the manager's office number :",
             name: "mngr_phone",
+            validate: val => {
+                correct = /[1-9]/gi.test(val)
+                if (correct) {
+                    return true;
+                } else {
+                    console.log("-- Please enter a valid phone number --")
+                    return false;
+                }
+            },
         },
     ])
     .then(user_input => {
@@ -105,6 +123,15 @@ const getEngineer = () => {
             type: "input",
             message: "Enter engineer's email :",
             name: "eng_mail",
+            validate: mailformat => {
+                correct = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mailformat)
+                if (correct) {
+                      return true;
+                  } else {
+                      console.error("-- Please enter a valid email address --");
+                      return false;
+                  }
+            },
         },
         {
             type: "input",
@@ -137,6 +164,15 @@ const getIntern = () => {
             type: "input",
             message: "Enter intern's email :",
             name: "int_mail",
+            validate: mailformat => {
+                correct = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mailformat)
+                if (correct) {
+                      return true;
+                  } else {
+                      console.error("-- Please enter a valid email address --");
+                      return false;
+                  }
+            },
         },
         {
             type: "input",
