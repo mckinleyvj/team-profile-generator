@@ -28,7 +28,8 @@ class createHTML{
                     <h1 class="display-4 text-center">${res[0]}</h1>
                 </header>
 
-                <div class="container-fluid d-flex justify-content-around">`;
+                <div class="container-fluid d-flex justify-content-around">
+                <div class="row w-75">`;
 
                 arr_htmlElements.push(topEl);
 
@@ -42,9 +43,9 @@ class createHTML{
                     {
                         if (member.role === "Manager") {
                             const memberCards = 
-                            `<div class="row px-4">
+                            `<div class="col">
                             <div class="card h-100">
-                              <div class="card-header bg-dark text-primary">
+                              <div class="card-header bg-primary text-white">
                                         <h3>${member.name}</h3>
                                         <h4>☕ ${member.role}</h4>
                                     </div>
@@ -60,9 +61,9 @@ class createHTML{
 
                         if (member.role === "Engineer") {
                             const memberCards = 
-                            `<div class="row px-4">
+                            `<div class="col">
                             <div class="card h-100">
-                              <div class="card-header bg-dark text-primary">
+                              <div class="card-header bg-success text-white">
                                     <h3>${member.name}</h3>
                                     <h4>🛠 ${member.role}</h4>
                                     </div>
@@ -78,9 +79,9 @@ class createHTML{
 
                         if (member.role === "Intern") {
                             const memberCards = 
-                            `<div class="row px-4">
+                            `<div class="col">
                             <div class="card h-100">
-                              <div class="card-header bg-dark text-primary">
+                              <div class="card-header bg-info text-white">
                                     <h3>${member.name}</h3>
                                     <h4>🎓 ${member.role}</h4>
                                     </div>
