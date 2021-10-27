@@ -74,14 +74,18 @@ Licensed under the [mit](LICENSE) license.
 node index.js
 ```
 
--   Screenshots will be added later when application is finalized.
+-   User will be prompted to input details about the team and will generate an HTML.
+    ![Command Line Input](./assets/images/CommandLineInput.png)
 
-    <p align="right">(<a href="#top">back to top</a>)</p>
+-   This will be the final output of the command line. A team profile displayed on HTML.
+    ![HTML Output](./assets/images/OutputHTML.png)
 
-    ## Questions
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-    Visit my [GitHub profile](https://github.com/mckinleyvj) for more information about me and my other repositories.
+## Questions
 
-    You can also send me an <a href="mailto:mckinleyvj@gmail.com?">email</a> to know more information.
+Visit my [GitHub profile](https://github.com/mckinleyvj) for more information about me and my other repositories.
 
-    <p align="right">(<a href="#top">back to top</a>)</p>
+You can also send me an <a href="mailto:mckinleyvj@gmail.com?">email</a> to know more information.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
